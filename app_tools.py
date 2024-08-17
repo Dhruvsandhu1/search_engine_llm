@@ -6,7 +6,7 @@ from langchain.agents import initialize_agent,AgentType
 from langchain.agents.agent import AgentExecutor
 from langchain_community.callbacks.streamlit import StreamlitCallbackHandler
 import os
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
 ## Arxiv and wikipedia Tools
 arxiv_wrapper=ArxivAPIWrapper(top_k_results=10, doc_content_chars_max=200)
@@ -27,7 +27,7 @@ We are allowing agents to use whichever tool they find correct at that point
 ## Sidebar for settings
 st.sidebar.title("Settings")
 
-api_key=os.getenv('GROQ_API_KEY')
+api_key=st.secrets["GROQ_API_KEY"]
 if "messages" not in st.session_state:
     st.session_state["messages"]=[
         {"role":"Assistant","content":"Hi,I'm a chatbot who can search the web. How can I help you?"}
